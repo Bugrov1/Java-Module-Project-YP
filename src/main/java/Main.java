@@ -39,11 +39,12 @@ public class Main {
             }//111
             else{
                 System.out.println("Введите цену для  "+good+" в формате \"рубли,копейки\"");
-                while (!scanner.hasNextDouble()){
-                    scanner.next();
-                    System.out.println("Введите цену в правильном формате!!!");
-                }
+
                 while (true){
+                    while (!scanner.hasNextDouble()){
+                        scanner.next();
+                        System.out.println("Введите цену в правильном формате!!!");
+                    }
 
                     double price = scanner.nextDouble();
                     if (price<=0){
