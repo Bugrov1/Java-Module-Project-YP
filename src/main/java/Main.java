@@ -29,37 +29,45 @@ public class Main {
 
              }
          }
-        //System.out.println("guestNum = "+guestNum);
-        //Goods goodName = new Goods();
-        //System.out.println("Введите название товара ");
+
 
         while (true){
             System.out.println("Введите название товара  ");
             String good =scanner.next();
-
-
-            if (!good.equalsIgnoreCase("завершить")){
-                System.out.println("Введите цену для  "+good+" в формате \"рубли,копейки\"");//у меня не вводится в формате руб.коп, но выводится правильно
+            if (good.equalsIgnoreCase("завершить")){
+                break;
+            }//111
+            else{
+                System.out.println("Введите цену для  "+good+" в формате \"рубли,копейки\"");
                 while (!scanner.hasNextDouble()){
                     scanner.next();
                     System.out.println("Введите цену в правильном формате!!!");
+                }
+                while (true){
 
+                    double price = scanner.nextDouble();
+                    if (price<=0){
+                        System.out.println("Цена не может быть отрицательной,введите корректную цену");
+                    }else{
+                        Goods.add(good,price);
+                        System.out.println(good+" Успешно добавлен");
+                        Goods.check();
+                        System.out.println("Хотите добавить еще один товар? Для окончания покупки напечайте \"Завершить\" ");
+                        break;
+                    }
                 }
 
-                double price = scanner.nextDouble();
-                Goods.add(good,price);
-                System.out.println(good+" Успешно добавлен");
-                Goods.check();
+            }
 
-                System.out.println("Хотите добавить еще один товар? Для окончания покупки напечайте \"Завершить\" ");
-            }else{break;}
+
+
 
         }
         Goods.check();
         double payEach =Goods.priceTotal/guestNum;
 
 
-        System.out.println("Сумма к оплате каждого гостя "+payEach+" "+Convert.ending(payEach));
+        System.out.println("Сумма к оплате каждого гостя: "+payEach+" "+Convert.ending(payEach));
 
 
 
@@ -87,6 +95,7 @@ public class Main {
      static void check(){
         System.out.println("Добавленные товары: "+goodsList);
          System.out.println("ОБщая сумма: "+priceTotal+" "+Convert.ending(priceTotal));
+         if (priceTotal ==0&&goodsList.equals("")){System.out.println("Вы не выбрали товар");}//1111
     }
 
 
