@@ -108,16 +108,21 @@ class Convert {
 
         double numRound = Math.floor(number);
         double leftOver= Math.floor(numRound)%10;
-        if(leftOver==1){
-            return "рубль";
-        }
-        else if (leftOver>=2&&leftOver<=4){
-            return "рубля";
-        }
-        else if (leftOver>=5&&leftOver<=9){
+        if(Math.floor(numRound)%100>=11&&Math.floor(numRound)%100<=19){
             return "рублей";
-        }else{
+        }
+        else{
+            if(leftOver==1){
+            return "рубль";
+            }
+            else if (leftOver>=2&&leftOver<=4){
+            return "рубля";
+            }
+            else if (leftOver>=5&&leftOver<=9){
+            return "рублей";
+            }else{
             return  "рублей";
+            }
         }
 
     }
